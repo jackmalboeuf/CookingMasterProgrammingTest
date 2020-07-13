@@ -5,4 +5,5 @@ using UnityEngine;
 public class VegetableState : MonoBehaviour
 {
     public VegetableObject vegetableSettings;
+    public bool isChopped = false;
 }

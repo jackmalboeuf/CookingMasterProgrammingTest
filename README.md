@@ -19,3 +19,10 @@ Vegetable Spawner
 1. Create a new vegetable object from the "create" menu
 2. Fill in the fields with the corresponding name and images
 3. Drag the object into the vegetable spawner's vegetable object field
+
+
+Chopping Table
+
+Requires no setup
+
+

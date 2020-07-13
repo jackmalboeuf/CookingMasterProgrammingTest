@@ -15,26 +15,11 @@ public class VegetableSpawner : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = vegetableProperties.unchoppedImage;
     }
 
-    public void SpawnVegetable(Transform spawnLocation)
+    public void SpawnVegetable(RectTransform spawnLocation)
     {
-        if (spawnLocation.childCount == 0)  //player is holding no vegetables
+        if (spawnLocation.childCount < 2)  //sets the vegetable's sprite and prevents player from holding more than two vegetables
         {
-            spawnedVegetable = Instantiate(vegetablePrefab, spawnLocation.position, spawnLocation.rotation, spawnLocation);
-        }
-        else if (spawnLocation.childCount == 1) //player is holding one vegetable
-        {
-            Transform firstVegetable = spawnLocation.GetChild(0);   //store currently held vegetable
-
-            //moves the first vegetable over to the left
-            firstVegetable.localPosition = new Vector2(-firstVegetable.localScale.x * 0.5f, firstVegetable.localPosition.y);
-
-            //spawn second vegetable to the right
             spawnedVegetable = Instantiate(vegetablePrefab, spawnLocation);
-            spawnedVegetable.transform.localPosition = new Vector2(firstVegetable.localScale.x * 0.5f, firstVegetable.localPosition.y);
-        }
-        
-        if (spawnLocation.childCount <= 2 && spawnedVegetable != null)  //sets the vegetable's sprite and prevents player from holding more than two vegetables
-        {
             spawnedVegetable.GetComponent<VegetableState>().vegetableSettings = vegetableProperties;
             spawnedVegetable.GetComponent<SpriteRenderer>().sprite = vegetableProperties.unchoppedImage;
             spawnedVegetable = null;
