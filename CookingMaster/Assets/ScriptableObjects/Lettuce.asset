@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7a65709838da7142999daf189594127, type: 3}
-  m_Name: Carrot
+  m_Name: Lettuce
   m_EditorClassIdentifier: 
-  vegetableName: 1
-  unchoppedImage: {fileID: 21300000, guid: ca84fdc941c1fda45a8f9653214db9d7, type: 3}
-  choppedImage: {fileID: 21300000, guid: be7f114929b542d4a8e6167e7b34c06e, type: 3}
+  vegetableName: 5
+  unchoppedImage: {fileID: 21300000, guid: e3ae99c3628d71c4ca88aae95023bc6d, type: 3}
+  choppedImage: {fileID: 21300000, guid: f75e1bfde3ae500438aa7a5e9e2464a3, type: 3}

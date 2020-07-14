@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a65709838da7142999daf189594127, type: 3}
   m_Name: Celery
   m_EditorClassIdentifier: 
-  vegetableName: Celery
+  vegetableName: 3
   unchoppedImage: {fileID: 21300000, guid: 88d7c849384d913499fd463227946f50, type: 3}
   choppedImage: {fileID: 21300000, guid: fe7183275151bf74ab0414a0778f3970, type: 3}
