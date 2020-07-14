@@ -31,5 +31,11 @@ Requires no setup
 
 Customer Manager
 
-1. Make sure the "Customer Prefab" and "Vegetable Image Prefab" are defined in the fields at the top of the "Customer Spawner" component
+1. Make sure the prefabs and object references are defined in the fields at the top of the "Customer Spawner" component
 2. Enter the number of vegetable types in the "Size" field and add each vegetable object to the list
+
+
+Customer Spawn Points
+
+1. Make sure the spawn points are evenly spaced from one another
+2. Order the spawn points in the list form top to bottom based on which seats you would like to be filled first

@@ -8,11 +8,13 @@ public class CustomerSpawner : MonoBehaviour
 {
     public GameObject customerPrefab;
     public Image vegetableImagePrefab;
+    public CustomerLocationManager cLocation;
     public List<VegetableObject> vegetableTypes = new List<VegetableObject>();
 
-    float timePassed = 0;
+    //float timePassed = 0;
     float spawnIntervalTimer = 0;
     float spawnInterval = 3;
+    float timePerVegetable = 10;
     int spawnStage = 0;
     CustomerRandomizer cRand;
     CustomerBehavior spawnedCustomer;
@@ -27,16 +29,37 @@ public class CustomerSpawner : MonoBehaviour
 
     private void Update()
     {
-        timePassed += Time.time;
+        //timePassed += Time.time;
 
-        if (spawnIntervalTimer <= 0)
+        if (spawnIntervalTimer <= 0)    //when the timer reaches 0
         {
-            spawnIntervalTimer = spawnInterval;
+            spawnIntervalTimer = spawnInterval; //reset timer
 
-            SpawnCustomer(spawnStage);
-            spawnStage++;
+            bool anyOpenSpawns = false;  //assume there are no open spawns
+
+            //change the bool to true if there are any open spawns
+            for (int i = 0; i < cLocation.spawnPoints.Count; i++)
+            {
+                if (cLocation.spawnPoints[i].childCount == 0)
+                {
+                    anyOpenSpawns = true;
+                }
+            }
+
+            //spawn a new customer only if there is at least one open spawn
+            if (anyOpenSpawns)
+            {
+                SpawnCustomer(spawnStage);
+            }
+
+            //move the spawn stage forward unless it has reached the max number of vegetable options
+            if (spawnStage < 5)
+            {
+                spawnStage++;
+            }
         }
 
+        //count down the timer
         if (spawnIntervalTimer > 0)
         {
             spawnIntervalTimer -= Time.deltaTime;
@@ -45,8 +68,10 @@ public class CustomerSpawner : MonoBehaviour
 
     void SpawnCustomer(int stage)
     {
-        spawnedCustomer = Instantiate(customerPrefab, transform).GetComponent<CustomerBehavior>();
+        //spawn the customer at a point determined by the CustomerLocationManager script
+        spawnedCustomer = Instantiate(customerPrefab, cLocation.GetOpenSpawn().position, cLocation.GetOpenSpawn().rotation, cLocation.GetOpenSpawn()).GetComponent<CustomerBehavior>();
         
+        //change the customer's order size based on the game's progress
         switch (stage)
         {
             case 0:
@@ -61,14 +86,29 @@ public class CustomerSpawner : MonoBehaviour
             case 3:
                 spawnedCustomer.customerOrder = cRand.CreateRandomCustomer(4);
                 break;
+            case 4:
+                spawnedCustomer.customerOrder = cRand.CreateRandomCustomer(5);
+                break;
+            case 5:
+                spawnedCustomer.customerOrder = cRand.CreateRandomCustomer(6);
+                break;
             default:
                 break;
         }
 
+        //add a number of images equal to the customer's order size and change their sprite to match the vegetable type
         for (int i = 0; i < spawnedCustomer.customerOrder.Count; i++)
         {
             orderImage = Instantiate(vegetableImagePrefab.gameObject, spawnedCustomer.orderDisplay);
             orderImage.GetComponent<Image>().sprite = vegetableTypes[spawnedCustomer.customerOrder[i]].choppedImage;
         }
+
+        //find the timer slider
+        Slider timerSlider = spawnedCustomer.GetComponentInChildren<Slider>();
+
+        //set the customer's wait time based on their order size and reset the timer slider
+        spawnedCustomer.waitTime = timePerVegetable * spawnedCustomer.customerOrder.Count;
+        timerSlider.maxValue = spawnedCustomer.waitTime;
+        timerSlider.value = timerSlider.maxValue;
     }
 }
