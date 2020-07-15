@@ -26,7 +26,7 @@ public class ChoppingTable : MonoBehaviour
             vegetableHolder = holder;
 
             //put vegetable on plate
-            currentVegetable.SetParent(transform);
+            currentVegetable.SetParent(transform.GetChild(0));
             currentVegetable.position = new Vector3(transform.position.x, transform.position.y, -1);
 
             //start chopping process
@@ -58,9 +58,9 @@ public class ChoppingTable : MonoBehaviour
                 player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                 player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                 chopSlider.gameObject.SetActive(false);
-                currentVegetable.GetComponent<SpriteRenderer>().sprite = currentVegetable.GetComponent<VegetableState>().vegetableSettings.choppedImage;
+                currentVegetable.GetComponent<Image>().sprite = currentVegetable.GetComponent<VegetableState>().vegetableSettings.choppedImage;
                 currentVegetable.GetComponent<VegetableState>().isChopped = true;
-                currentVegetable.parent = vegetableHolder;
+                currentVegetable.SetParent(vegetableHolder);
                 currentVegetable.position = new Vector2(0, 0);
                 canInteract = true;
             }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VegetableSpawner : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class VegetableSpawner : MonoBehaviour
         {
             spawnedVegetable = Instantiate(vegetablePrefab, spawnLocation);
             spawnedVegetable.GetComponent<VegetableState>().vegetableSettings = vegetableProperties;
-            spawnedVegetable.GetComponent<SpriteRenderer>().sprite = vegetableProperties.unchoppedImage;
+            spawnedVegetable.GetComponent<Image>().sprite = vegetableProperties.unchoppedImage;
             spawnedVegetable = null;
         }
     }

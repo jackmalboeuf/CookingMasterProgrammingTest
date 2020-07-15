@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,12 +12,11 @@ public class CustomerSpawner : MonoBehaviour
     public CustomerLocationManager cLocation;
     public List<VegetableObject> vegetableTypes = new List<VegetableObject>();
 
-    //float timePassed = 0;
     float spawnIntervalTimer = 0;
-    float spawnInterval = 3;
-    float timePerVegetable = 10;
+    float spawnInterval = 5;
+    float timePerVegetable = 50;
     int spawnStage = 0;
-    CustomerRandomizer cRand;
+    //CustomerRandomizer cRand;
     CustomerBehavior spawnedCustomer;
     GameObject orderImage;
 
@@ -24,13 +24,11 @@ public class CustomerSpawner : MonoBehaviour
 
     private void Start()
     {
-        cRand = GetComponent<CustomerRandomizer>();
+        //cRand = GetComponent<CustomerRandomizer>();
     }
 
     private void Update()
     {
-        //timePassed += Time.time;
-
         if (spawnIntervalTimer <= 0)    //when the timer reaches 0
         {
             spawnIntervalTimer = spawnInterval; //reset timer
@@ -70,7 +68,8 @@ public class CustomerSpawner : MonoBehaviour
     {
         //spawn the customer at a point determined by the CustomerLocationManager script
         spawnedCustomer = Instantiate(customerPrefab, cLocation.GetOpenSpawn().position, cLocation.GetOpenSpawn().rotation, cLocation.GetOpenSpawn()).GetComponent<CustomerBehavior>();
-        
+        CustomerRandomizer cRand = gameObject.AddComponent<CustomerRandomizer>();
+
         //change the customer's order size based on the game's progress
         switch (stage)
         {
@@ -110,5 +109,6 @@ public class CustomerSpawner : MonoBehaviour
         spawnedCustomer.waitTime = timePerVegetable * spawnedCustomer.customerOrder.Count;
         timerSlider.maxValue = spawnedCustomer.waitTime;
         timerSlider.value = timerSlider.maxValue;
+        Destroy(cRand);
     }
 }
