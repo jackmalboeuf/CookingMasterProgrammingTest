@@ -49,6 +49,11 @@ public class PlayerInteraction : MonoBehaviour
         {
             collision.GetComponent<CustomerBehavior>().CheckOrder(plateVegetableHolder);
         }
+        else if (collision.GetComponent<TrashFood>())
+        {
+            collision.GetComponent<TrashFood>().DeleteFood(vegetableHolder, plate);
+            plate = null;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

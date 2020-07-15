@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlateBehavior : MonoBehaviour
 {
+    public Transform returnLocation;
+
     public void PlaceObjectOnPlate(Transform vegetableHolder)
     {
         for (int i = 0; i < vegetableHolder.childCount; i++)
