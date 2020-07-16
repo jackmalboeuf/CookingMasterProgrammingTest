@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class TrashFood : MonoBehaviour
 {
+    int scoreChange = -1;
+
     public void DeleteFood(Transform heldFood, Transform plate)
     {
+        //remove any food held by the player
         for (int i = 0; i < heldFood.childCount; i++)
         {
             Destroy(heldFood.GetChild(i).gameObject);
         }
 
+        //remove any food on the plate, reset the plate's location, and subtract score
         if (plate != null)
         {
-            for (int i = 0; i < plate.childCount; i++)
-            {
-                Destroy(plate.GetChild(0).GetChild(i).gameObject);
-            }
+            plate.GetComponent<PlateBehavior>().ResetPlate();
 
-            plate.SetParent(null);
-            plate.position = plate.GetComponent<PlateBehavior>().returnLocation.position;
+            if (heldFood.GetComponentInParent<PlayerScore>())
+            {
+                heldFood.GetComponentInParent<PlayerScore>().UpdateScore(scoreChange);
+            }
         }
     }
 }

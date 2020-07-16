@@ -39,3 +39,16 @@ Customer Spawn Points
 
 1. Make sure the spawn points are evenly spaced from one another
 2. Order the spawn points in the list form top to bottom based on which seats you would like to be filled first
+
+
+Trash Can
+
+Requires no setup
+
+
+Plate
+
+1. Create an empty game object and name it "PlateXReturnLocation" where "X" is the number of plate it is
+2. Select the empty game object you just made as the reference for "Return Location" in the plate object's "PlateBehavior" component
+3. Move the plate return location object to wherever in the scene you want the plate to reset to when throwing food in the trash or delivering orders
+4. Move the plate object to the same transform position as the return location but do not parent either of them to one another

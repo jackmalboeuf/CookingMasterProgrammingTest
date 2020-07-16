@@ -14,18 +14,12 @@ public class CustomerSpawner : MonoBehaviour
 
     float spawnIntervalTimer = 0;
     float spawnInterval = 5;
-    float timePerVegetable = 50;
+    float timePerVegetable = 10;
     int spawnStage = 0;
-    //CustomerRandomizer cRand;
     CustomerBehavior spawnedCustomer;
     GameObject orderImage;
 
     public List<int> chosenVegetables = new List<int>();
-
-    private void Start()
-    {
-        //cRand = GetComponent<CustomerRandomizer>();
-    }
 
     private void Update()
     {
