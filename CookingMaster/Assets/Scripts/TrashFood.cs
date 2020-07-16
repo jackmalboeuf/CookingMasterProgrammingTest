@@ -23,6 +23,8 @@ public class TrashFood : MonoBehaviour
             {
                 heldFood.GetComponentInParent<PlayerScore>().UpdateScore(scoreChange);
             }
+
+            plate = null;
         }
     }
 }

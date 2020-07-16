@@ -61,6 +61,10 @@ public class PlayerInteraction : MonoBehaviour
             collision.GetComponent<TrashFood>().DeleteFood(vegetableHolder, plate);
             plate = null;
         }
+        else if (collision.GetComponent<Powerup>())
+        {
+            collision.GetComponent<Powerup>().PickUpPowerup(this);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -104,7 +104,7 @@ public class CustomerBehavior : MonoBehaviour
             //if order is given correctly within a certain percent of time spawn a powerup
             if (customerTimer >= bonusPercent * waitTime)
             {
-                //give powerup
+                FindObjectOfType<PowerupSpawner>().SpawnPowerup();
             }
 
             player.UpdateScore(pointsToAdd * numberOfVegetablesCorrect);

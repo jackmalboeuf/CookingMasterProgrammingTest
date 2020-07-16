@@ -54,15 +54,23 @@ public class ChoppingTable : MonoBehaviour
             if (chopTimer <= 0)
             {
                 chopTimer = 0;
-                player.GetComponent<PlayerMovement>().enabled = true;
-                player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-                chopSlider.gameObject.SetActive(false);
                 currentVegetable.GetComponent<Image>().sprite = currentVegetable.GetComponent<VegetableState>().vegetableSettings.choppedImage;
                 currentVegetable.GetComponent<VegetableState>().isChopped = true;
                 currentVegetable.SetParent(vegetableHolder);
                 currentVegetable.position = new Vector2(0, 0);
                 canInteract = true;
+
+                if (!vegetableHolder.GetChild(0).GetComponent<VegetableState>().isChopped)
+                {
+                    ChopVegetables(vegetableHolder);
+                }
+                else
+                {
+                    player.GetComponent<PlayerMovement>().enabled = true;
+                    player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    chopSlider.gameObject.SetActive(false);
+                }
             }
         }
     }

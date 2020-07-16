@@ -14,7 +14,7 @@ public class CustomerSpawner : MonoBehaviour
 
     float spawnIntervalTimer = 0;
     float spawnInterval = 5;
-    float timePerVegetable = 10;
+    float timePerVegetable = 100;
     int spawnStage = 0;
     CustomerBehavior spawnedCustomer;
     GameObject orderImage;
