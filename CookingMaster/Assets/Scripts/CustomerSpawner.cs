@@ -13,8 +13,8 @@ public class CustomerSpawner : MonoBehaviour
     public List<VegetableObject> vegetableTypes = new List<VegetableObject>();
 
     float spawnIntervalTimer = 0;
-    float spawnInterval = 5;
-    float timePerVegetable = 100;
+    float spawnInterval = 10;
+    float timePerVegetable = 15;
     int spawnStage = 0;
     CustomerBehavior spawnedCustomer;
     GameObject orderImage;

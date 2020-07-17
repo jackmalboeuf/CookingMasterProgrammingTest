@@ -13,7 +13,6 @@ public class Powerup : MonoBehaviour
 
     public void PickUpPowerup(PlayerInteraction player)
     {
-        print(type);
         switch (type)
         {
             case powerupType.Speed:
@@ -40,7 +39,7 @@ public class Powerup : MonoBehaviour
 
     void AddTime(PlayerInteraction playerTimer)
     {
-        throw new NotImplementedException();
+        playerTimer.GetComponent<PlayerTimer>().timer += 20;
     }
 
     void IncreaseScore(PlayerInteraction playerScore)

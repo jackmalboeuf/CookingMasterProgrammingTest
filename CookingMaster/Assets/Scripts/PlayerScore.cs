@@ -7,7 +7,8 @@ public class PlayerScore : MonoBehaviour
 {
     public Text scoreText;
     
-    int score = 0;
+    [HideInInspector]
+    public int score = 0;
 
     private void Start()
     {

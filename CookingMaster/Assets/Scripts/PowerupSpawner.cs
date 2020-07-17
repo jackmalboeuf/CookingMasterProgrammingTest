@@ -16,18 +16,24 @@ public class PowerupSpawner : MonoBehaviour
     //the box collider component should be disabled at runtime
     Vector3 RandomizeSpawnLocation()
     {
-        float xRange = Random.Range(-transform.lossyScale.x, transform.lossyScale.x);
-        float yRange = Random.Range(-transform.lossyScale.y, transform.lossyScale.y);
+        //get the range of the spawn area
+        float xRange = Random.Range(-transform.localScale.x, transform.localScale.x);
+        float yRange = Random.Range(-transform.localScale.y, transform.localScale.y);
 
+        //get the offset of the area
         Vector3 offset = transform.position;
 
+        //spawn at a random location within the bounds of the area, adjusted by the offset of the area
         return new Vector3(xRange, yRange, 0) + offset;
     }
 
     public void SpawnPowerup()
     {
+        //spawn powerup gameobject
         spawnedPowerup = Instantiate(powerupPrefab, RandomizeSpawnLocation(), transform.rotation, null);
+        spawnedPowerup.transform.localScale = new Vector3(0.8f, 0.8f, 1);
 
+        //pick a random powerup to spawn and set its properties
         int rand = Random.Range(0, 3);
 
         switch (rand)
